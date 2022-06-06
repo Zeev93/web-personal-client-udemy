@@ -1,10 +1,18 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import routes from "./config/routes"
+import 'antd/dist/antd.min.css'
 import './App.scss'
-
 
 function App() {
 	return (
-		<div className='App'>
-		</div>
+		<BrowserRouter>
+			<Routes>
+				{ routes.map( (route, index) => (
+					<Route key={index} path={route.path} element={ <route.layout> <route.component /> </route.layout> }
+				/>
+				))}
+			</Routes>
+		</BrowserRouter>
 	);
 }
 
