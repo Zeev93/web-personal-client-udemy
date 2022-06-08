@@ -13,18 +13,13 @@ import Contact from '../pages/Contact'
 
 //Otros
 import Error404 from "../pages/Error404";
+import LayoutSignIn from "../layouts/LayoutSignIn";
 
 const routesAdmin = [
     {
         path: "/admin",
         layout: LayoutAdmin,
         component: AdminHome
-    },
-    {
-        path: "/admin/login",
-        layout: LayoutAdmin,
-        component: AdminSignIn
-
     },
     {
         path: "*",
@@ -41,6 +36,11 @@ const routesAdmin = [
         component: Home
     },
     {
+        path: '/login',
+        layout: LayoutSignIn,
+        component: AdminSignIn ,
+    },
+    {
         path: "/contact",
         layout: LayoutBasic,
         component: Contact
@@ -55,5 +55,4 @@ const routesAdmin = [
  const routes = [...routesAdmin, ...routesClient]
 
 
- console.log(routes);
  export default routes
