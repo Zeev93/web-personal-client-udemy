@@ -3,6 +3,8 @@ import { Form, Input, Button, Checkbox, notification} from "antd"
 import { LockOutlined, UserOutlined } from "@ant-design/icons"
 import { useState } from "react"
 import { emailValidation, minLegthValidation } from '../../../utils/formValidation'
+import { signUpApi } from "../../../api/user"
+
 
 export default function RegisterForm() {
 
@@ -19,6 +21,8 @@ export default function RegisterForm() {
         repeatPassword: false,
         privacyPolicy: false
     })
+
+    const { email, password, repeatPassword, privacyPolicy} = inputs
 
     const handleChange = e => {
         e.preventDefault()
@@ -62,11 +66,50 @@ export default function RegisterForm() {
         }
     }
 
-    const handleSubmit = () => {
-        console.log(validate);
+    
+    const handleSubmit = async () => {
+        if(!email || !privacyPolicy || !validate.password || !validate.repeatPassword ){
+            notification['error']({
+                message: 'Todos los campos son obligatorios'
+            })
+        }else{
+            if(!validate.password !== !validate.repeatPassword){
+                notification['error']({
+                    message: 'Las contraseñas no coinciden'
+                })
+            }else{
+                // TODO: Conectar con el API y registrar con el usuario
+                const result = await signUpApi(inputs)
+                if(result.status !== 200){
+                    notification['error']({
+                        message: result.message
+                    })
+                }else{
+                    notification['success']({
+                        message: result.message
+                    })
+                    resetForm()
+                }
+            }
+        }
     }
 
-    const { email, password, repeatPassword, privacyPolicy} = inputs
+    const resetForm = () => {
+        setInputs({
+            email: '',
+            password: '',
+            repeatPassword: '',
+            privacyPolicy: false
+        })
+
+        const alertContainer = document.querySelectorAll('.ant-form-item-control-input-content')
+
+        alertContainer.forEach( item => {
+            item.classList.remove('success')
+            item.classList.remove('error')
+        })
+    }
+
     return (
         <Form className="register-form" onChange={handleChange} onFinish={handleSubmit}>
             <Form.Item>

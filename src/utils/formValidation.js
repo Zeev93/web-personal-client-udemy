@@ -4,10 +4,10 @@ export function minLegthValidation(inputData, minLength){
     removeClassErrorSuccess(inputData)
 
     if(value.length >= minLength){
-        inputData.classList.add("success")
+        inputData.parentNode.parentNode.classList.add("success")
         return true
     }else{
-        inputData.classList.add("error")
+        inputData.parentNode.parentNode.classList.add("error")
         return false
     }
 }
@@ -24,16 +24,16 @@ export function emailValidation(inputData){
     const resultValidation = emailValid.test(value)
 
     if(resultValidation){
-        inputData.classList.add("success")
+        inputData.parentNode.parentNode.classList.add("success")
         return true
     }else{
-        inputData.classList.add("error")
+        inputData.parentNode.parentNode.classList.add("error")
         return false
     }
 }
 
 
 function removeClassErrorSuccess(inputData){
-    inputData.classList.remove('success')
-    inputData.classList.remove('error')
+    inputData.parentNode.parentNode.classList.remove('success')
+    inputData.parentNode.parentNode.classList.remove('error')
 }
