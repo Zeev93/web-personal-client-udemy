@@ -118,7 +118,7 @@ export default function RegisterForm() {
                     onChange={inputValidation}
                     type="email"
                     name="email"
-                    placeholder="Correo electronico"
+                    placeholder="Correo eléctronico"
                     className="register-form__input"
                     prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)"}} />}
                     />

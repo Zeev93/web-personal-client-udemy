@@ -33,3 +33,27 @@ export function signUpApi(data){
             }
         })
 }
+
+export function signInApi(data){
+    const URL = `${HOST}/sign-in`
+    
+    const params = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+
+    }
+    return fetch(URL, params)
+    .then( response => {
+        return response.json()
+    })
+    .then(result => {
+        return result
+    })
+    .catch( err => {
+        console.log(err);
+        return err.message
+    })
+}

@@ -2,6 +2,7 @@ import "./SignIn.scss"
 import { Layout, Tabs } from "antd"
 import { Navigate } from "react-router-dom"
 import RegisterForm from "../../../components/Admin/RegisterForm"
+import LoginForm from "../../../components/Admin/LoginForm/LoginForm"
 
 
 export default function SignIn() {
@@ -16,7 +17,7 @@ export default function SignIn() {
                 <div className="sign-in__content-tabs">
                     <Tabs type="card">
                         <TabPane tab={ <span> Entrar </span> } key="1" >
-                            Componente LoginForm
+                            <LoginForm />
                         </TabPane>
                         <TabPane tab={ <span> Nuevo Usuario </span> } key="2" >
                             <RegisterForm/>
